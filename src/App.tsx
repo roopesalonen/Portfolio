@@ -1,5 +1,6 @@
 import { Intro } from './components/Intro'
 import { ProjectCard } from './components/ProjectCard'
+import { Skills } from './components/Skills'
 import { projects } from './data/projects'
 
 function App() {
@@ -7,7 +8,9 @@ function App() {
     <div className="mx-auto max-w-5xl overflow-x-clip px-5 py-16 sm:px-8 sm:py-16">
       <Intro />
 
-      <main className="mt-16">
+      <Skills />
+
+      <main className="mt-10">
         <h2 className="text-center text-xl font-semibold tracking-tight text-[var(--heading)]">
           Projects
         </h2>

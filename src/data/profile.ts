@@ -17,11 +17,11 @@ export const profile: Profile = {
   name: 'Roope Salonen',
   title: 'Software Developer',
   intro:
-    'Description',
+    'description description description description description description description description description description description description description description description description description description description description description description description description ',
   avatar: '/avatar.png',
   links: [
-    { label: 'GitHub', href: '', icon: 'github' },
-    { label: 'LinkedIn', href: '', icon: 'linkedin' },
-    { label: 'Email', href: 'mailto:you@example.com', icon: 'email' },
+    { label: 'GitHub', href: 'https://github.com/roopesalonen', icon: 'github' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/roopesalonen/', icon: 'linkedin' },
+    { label: 'Email', href: 'mailto:roopefy@gmail.com', icon: 'email' },
   ],
 }
