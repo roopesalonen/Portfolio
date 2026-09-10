@@ -1,6 +1,8 @@
 export interface SocialLink {
   label: string
   href: string
+  /** Optional icon key — must match a name in `socialIcons` (components/Intro.tsx). */
+  icon?: 'github' | 'linkedin' | 'email'
 }
 
 export interface Profile {
@@ -18,8 +20,8 @@ export const profile: Profile = {
     'Description',
   avatar: '/avatar.png',
   links: [
-    { label: 'GitHub', href: '' },
-    { label: 'LinkedIn', href: '' },
+    { label: 'GitHub', href: '', icon: 'github' },
+    { label: 'LinkedIn', href: '', icon: 'linkedin' },
+    { label: 'Email', href: 'mailto:you@example.com', icon: 'email' },
   ],
 }
- 
