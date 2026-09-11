@@ -17,7 +17,7 @@ function App() {
         <div className="mt-8 flex flex-col gap-10 sm:gap-14">
           {projects.map((project, i) => (
             <ProjectCard
-              key={project.id}
+              key={project.title}
               project={project}
               align={i % 2 === 0 ? 'left' : 'right'}
             />
