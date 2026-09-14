@@ -1,3 +1,4 @@
+import { Footer } from './components/Footer'
 import { Intro } from './components/Intro'
 import { ProjectCard } from './components/ProjectCard'
 import { Skills } from './components/Skills'
@@ -5,7 +6,7 @@ import { projects } from './data/projects'
 
 function App() {
   return (
-    <div className="mx-auto max-w-5xl overflow-x-clip px-5 py-16 sm:px-8 sm:py-16">
+    <div className="mx-auto max-w-5xl overflow-x-clip px-5 py-16 sm:px-8 sm:py-10">
       <Intro />
 
       <Skills />
@@ -25,9 +26,7 @@ function App() {
         </div>
       </main>
 
-      <footer className="mt-20 border-t border-[var(--border)] pt-6 text-sm text-[var(--muted)]">
-        &copy; Roope Salonen {new Date().getFullYear()}
-      </footer>
+      <Footer />
     </div>
   )
 }

@@ -1,6 +1,6 @@
-import { useState } from 'react'
 import type { ComponentType, SVGProps } from 'react'
 import { profile } from '../data/profile'
+import { useCopyEmail } from '../hooks/useCopyEmail'
 import { GitHubIcon, LinkedInIcon, MailIcon } from './icons'
 import { Toast } from './Toast'
 
@@ -10,45 +10,8 @@ const socialIcons: Record<string, ComponentType<SVGProps<SVGSVGElement>>> = {
   email: MailIcon,
 }
 
-/** Pull the bare address out of a mailto: href, dropping any ?subject=… params. */
-function mailtoAddress(href: string): string | null {
-  if (!href.startsWith('mailto:')) return null
-  return decodeURIComponent(href.slice('mailto:'.length).split('?')[0]) || null
-}
-
-/** Copy text, falling back to execCommand where the async Clipboard API is unavailable. */
-async function copyText(text: string): Promise<boolean> {
-  try {
-    await navigator.clipboard.writeText(text)
-    return true
-  } catch {
-    try {
-      const el = document.createElement('textarea')
-      el.value = text
-      el.style.position = 'fixed'
-      el.style.opacity = '0'
-      document.body.appendChild(el)
-      el.select()
-      const ok = document.execCommand('copy')
-      document.body.removeChild(el)
-      return ok
-    } catch {
-      return false
-    }
-  }
-}
-
 export function Intro() {
-  const [toast, setToast] = useState({ message: '', show: false })
-
-  async function handleClick(href: string, label: string) {
-    const address = mailtoAddress(href)
-    if (!address) return
-    if (await copyText(address)) {
-      setToast({ message: `${label} address copied`, show: true })
-      window.setTimeout(() => setToast((t) => ({ ...t, show: false })), 2500)
-    }
-  }
+  const { toast, handleLinkClick } = useCopyEmail()
 
   return (
     <header className="flex flex-col items-center text-center">
@@ -76,7 +39,7 @@ export function Intro() {
                       rel="noreferrer"
                       aria-label={link.label}
                       title={link.label}
-                      onClick={() => handleClick(link.href, link.label)}
+                      onClick={() => handleLinkClick(link.href, link.label)}
                       className="flex h-7 w-7 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--chip-bg)] text-[var(--chip-text)] shadow-md transition hover:bg-[var(--chip-bg-hover)] sm:h-9 sm:w-9"
                     >
                       {Icon && (
