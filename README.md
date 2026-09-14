@@ -1,75 +1,69 @@
-# React + TypeScript + Vite
+# Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio of Roope Salonen - live at [roopesalonen.fi](https://roopesalonen.fi).
 
-Currently, two official plugins are available:
+A single-page site: an intro header, a skills list, and a staggered
+grid of project cards, each linking out to a live demo and/or its source
+repository.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech stack
 
-## React Compiler
+- [React 19](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/) + [Vite](https://vite.dev/)
+- [Tailwind CSS v4](https://tailwindcss.com/) (via `@tailwindcss/vite`)
+- [react-icons](https://react-icons.github.io/react-icons/) for skill/brand
+  icons, plus a few hand-rolled SVGs in [`src/components/icons.tsx`](src/components/icons.tsx)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Project structure
 
 ```
+src/
+  data/
+    profile.ts      name, title, description, avatar, social links
+    projects.ts     project cards: title, description, image, links, tags
+    skills.ts       skills grouped into three tiers
+  components/       one component per page section (Intro, Skills,
+                    ProjectCard, Footer, Toast) plus shared icons.tsx
+  hooks/
+    useCopyEmail.ts  copies a mailto: link's address to the clipboard and
+                     shows a toast
+  index.css          design tokens (colors, fonts) as CSS variables
+```
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+All page content - intro, projects, skills - lives in `src/data/`. Editing the
+site day to day means editing those three files, not the components.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Adding a project
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Add an entry to the `projects` array in [`src/data/projects.ts`](src/data/projects.ts):
 
+```ts
+{
+  title: 'Project name',
+  description: 'Small description on what it does and how it was built.',
+  image: '/project-screenshot.webp', // put the file in public/
+  href: 'https://example.com',       // optional — live demo, shows "View project"
+  repo: 'https://github.com/...',    // optional — shows "Source code"
+  tags: ['TypeScript', 'React'],
+}
+```
+
+Screenshots should be roughly 16:9 so they aren't
+cropped by the card. Project cards render in the order listed and alternate
+which side the screenshot sits on.
+
+### Design tokens
+
+Colors, not layout, are centralized in [`src/index.css`](src/index.css) as
+CSS custom properties (`--page-bg`, `--text`, `--heading`, `--accent`,
+`--border`, `--card-bg`, `--chip-bg`, …). Components reference them via
+Tailwind's arbitrary-value syntax, e.g. `text-[var(--heading)]`.
+
+## Local development
+
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run lint
+npm run build     # type-checks, then outputs static files to dist/
+npm run preview   # serve the built dist/ locally
 ```
