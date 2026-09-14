@@ -103,7 +103,7 @@ export function Intro() {
         </div>
       </div>
 
-      <p className="mt-6 w-full max-w-2xl leading-relaxed">{profile.intro}</p>
+      <p className="mt-6 w-full max-w-3xl leading-relaxed">{profile.intro}</p>
 
       <Toast message={toast.message} show={toast.show} />
     </header>

@@ -9,7 +9,7 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    title: 'Video game calendar',
+    title: 'Video Game Calendar',
     description:
       'A web app that lists upcoming video game releases with platform filtering, using data from the IGDB API.',
     image: '/videopelikalenteri.png',
@@ -18,7 +18,7 @@ export const projects: Project[] = [
     tags: ['TypeScript', 'Vue', 'Node', 'Express'],
   },
   {
-    title: 'GitLab support for MLOps Platform',
+    title: 'GitLab Support for MLOps Platform',
     description:
       `As a two-person team, added full GitLab support to the repo-scaffolding CLI of an open-source MLOps platform. It now works with GitLab and self-hosted instances, not just GitHub.`,
     image: '/gitlab.png',
@@ -44,9 +44,9 @@ export const projects: Project[] = [
     tags: ['Python', 'Pygame', 'Pygbag', 'WebAssembly'],
   },
   {
-    title: 'Self-hosted VPS & web hosting',
+    title: 'VPS & Web Hosting',
     description:
-      'A Debian VPS I run to host my projects, including this site. Nginx serves static sites and reverse-proxies a Node backend that powers the Video game calendar.',
+      'A Debian VPS I manage to host my projects, including this site. Nginx serves static sites and reverse-proxies a Node backend that powers the Video game calendar.',
     image: '/vps.png',
     tags: ['Linux', 'Nginx', 'Node', 'DevOps'],
   },

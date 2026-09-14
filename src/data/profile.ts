@@ -17,7 +17,7 @@ export const profile: Profile = {
   name: 'Roope Salonen',
   title: 'Software Developer',
   intro:
-    'description description description description description description description description description description description description description description description description description description description description description description description description ',
+    `I'm a software developer currently based in Jyväskylä, Finland. I recently graduated from Haaga-Helia University of Applied Sciences with a BBA in Business Information Technology, majoring in Full-Stack Development. Programming is a genuine passion of mine, and the whole reason I chose to study it. I'm looking for my place in the industry, always excited to learn something new.`,
   avatar: '/avatar.png',
   links: [
     { label: 'GitHub', href: 'https://github.com/roopesalonen', icon: 'github' },
